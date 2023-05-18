@@ -20,6 +20,7 @@ import { eventData } from "./components/Schedule/event";
 function App() {
   const [isHideSideBar, setIsHideSideBar] = useState(false);
   const currentDay = dayjs();
+  const [selectedDate, setSelectedDate] = useState(currentDay);
 
   const [currentMonth, setCurrentMonth] = useState(currentDay);
 
@@ -57,6 +58,7 @@ function App() {
 
   const handleCurrentMonth = () => {
     setCurrentMonth(currentDay);
+    setSelectedDate(currentDay);
   };
 
   const toggleSideBar = () => {
@@ -93,13 +95,13 @@ function App() {
             <GridContainer
               container
               spacing={0}
-              className={isHideSideBar ? "isScheduleFull" : ""}
+              className={isHideSideBar ? "is-hide-sidebar" : ""}
             >
-              <GridSideBar
-                item
-                className={isHideSideBar ? "isHideSideBar" : ""}
-              >
-                <Sidebar />
+              <GridSideBar item>
+                <Sidebar
+                  selectedDate={selectedDate}
+                  setSelectedDate={setSelectedDate}
+                />
               </GridSideBar>
               <GridSchedule item borderLeft={true} xs>
                 <Schedule

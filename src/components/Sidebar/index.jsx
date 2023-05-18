@@ -1,16 +1,13 @@
 import { Box, Grid, ListItem, ListItemText, Typography } from "@mui/material";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 import { CalendarCustom, ListContent, GridListEvent, GridList } from "./styles";
 import { eventData } from "../Schedule/event";
-import CalendarContext from "../../store/CalendarContext";
 import EventModal from "../EventModal";
 
-function Sidebar() {
-  const currentDay = useContext(CalendarContext);
-  const [selectedDate, setSelectedDate] = useState(currentDay);
+function Sidebar({ selectedDate, setSelectedDate }) {
   const scrollToRef = useRef(null);
 
   const [showModal, setShowModal] = useState(false);
@@ -26,8 +23,6 @@ function Sidebar() {
     if (scrollToRef.current) {
       scrollToRef.current.scrollIntoView({
         behavior: "smooth",
-        block: "start",
-        inline: "nearest",
       });
     }
   }, [selectedDate]);
@@ -40,6 +35,7 @@ function Sidebar() {
           showDaysOutsideCurrentMonth
           fixedWeekNumber={5}
           onChange={setSelectedDate}
+          value={selectedDate}
         />
       </LocalizationProvider>
       <GridListEvent container>

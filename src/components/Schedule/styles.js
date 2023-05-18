@@ -20,7 +20,7 @@ const GridContainer = styled(Grid)({
   marginLeft: 0,
   transition: "all 250ms ease-in-out",
   flexGrow: "unset",
-  "&.isScheduleFull": {
+  "&.is-hide-sidebar": {
     marginLeft: "-320px",
     flexGrow: 1,
   },

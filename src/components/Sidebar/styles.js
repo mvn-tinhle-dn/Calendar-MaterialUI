@@ -5,12 +5,10 @@ import { DateCalendar } from "@mui/x-date-pickers";
 const CalendarCustom = styled(DateCalendar)(({ theme }) => ({
   "& .MuiDayCalendar-weekContainer ": {
     "& > .MuiPickersDay-today": {
-      backgroundColor: theme.palette.today.main,
-      color: theme.palette.whiteText.main,
       border: "unset",
     },
     "& > .Mui-selected": {
-      backgroundColor: theme.palette.liveDark.main,
+      backgroundColor: theme.palette.today.main,
     },
   },
   " & .MuiPickersSlideTransition-root": {
