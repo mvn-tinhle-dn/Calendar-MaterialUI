@@ -1,12 +1,14 @@
 import { Grid } from "@mui/material";
+import dayjs from "dayjs";
+import { useState } from "react";
+import { Helmet } from "react-helmet";
+
 import "./App.css";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Schedule from "./components/Schedule";
 import { FlexContainer, GridNoPadding } from "./common/common";
-import dayjs from "dayjs";
 import CalendarContext from "./store/CalendarContext";
-import { useState } from "react";
 import {
   GridContainer,
   GridSchedule,
@@ -14,7 +16,6 @@ import {
 } from "./components/Schedule/styles";
 import { matchEventsToCalendarRows } from "./helper/Calendar.help";
 import { eventData } from "./components/Schedule/event";
-import { Helmet } from "react-helmet";
 
 function App() {
   const [isHideSideBar, setIsHideSideBar] = useState(false);
