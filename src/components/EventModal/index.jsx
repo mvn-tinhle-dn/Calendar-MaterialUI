@@ -1,7 +1,8 @@
 import React from "react";
-import { IconButton, Modal, Typography } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import dayjs from "dayjs";
 import EventIcon from "@mui/icons-material/Event";
+import CloseIcon from "@mui/icons-material/Close";
+import { IconButton, Modal, Typography } from "@mui/material";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 
 import {
@@ -12,6 +13,9 @@ import {
 } from "./styles";
 
 const EventModal = ({ open, onClose, event }) => {
+  const startDay = dayjs(event.start).toDate().toLocaleDateString("en-GB");
+  const endDay = dayjs(event.end).toDate().toLocaleDateString("en-GB");
+
   return (
     <Modal open={open} onClose={onClose}>
       <PaperModalEvent elevation={3}>
@@ -27,15 +31,11 @@ const EventModal = ({ open, onClose, event }) => {
           </BoxContentModal>
           <BoxContentModal className="time-event">
             <RadioButtonCheckedIcon fontSize="inherit" color="liveDark" />
-            <Typography variant="subtitle2">
-              Start day: {event.start.toLocaleDateString("en-GB")}
-            </Typography>
+            <Typography variant="subtitle2">Start day: {startDay}</Typography>
           </BoxContentModal>
           <BoxContentModal className="time-event">
             <RadioButtonCheckedIcon fontSize="inherit" color="liveDark" />
-            <Typography variant="subtitle2">
-              End day: {event.end.toLocaleDateString("en-GB")}
-            </Typography>
+            <Typography variant="subtitle2">End day: {endDay}</Typography>
           </BoxContentModal>
         </BoxBodyModal>
       </PaperModalEvent>

@@ -1,5 +1,5 @@
-import { Grid, Typography, Tooltip } from "@mui/material";
 import React, { useState } from "react";
+import { Grid, Typography, Tooltip } from "@mui/material";
 
 import {
   GridNameDayHeader,
@@ -10,19 +10,27 @@ import {
   TypoEvent,
 } from "./styles";
 import EventModal from "../EventModal";
+import ModalAddEvent from "../ModalAddEvent";
+import { CloseModalContext } from "../../store/CalendarContext";
 
 function Schedule({ calendarRows, currentMonth, currentDay }) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState("");
 
-  const onShowModal = (event) => {
+  const onShowModal = (event, e) => {
+    e.stopPropagation();
     setShowModal(true);
     setSelectedEvent(event);
   };
+  const [showModalAddEvent, setShowModalAddEvent] = useState(false);
+
+  const onShowModalAddEvent = () => {
+    setShowModalAddEvent(true);
+  };
 
   return (
-    <>
+    <CloseModalContext.Provider value={setShowModalAddEvent}>
       <Grid container spacing={0} direction="column">
         <GridNameDayHeader container>
           {daysOfWeek.map((day, columnIndex) => (
@@ -50,6 +58,7 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
                       isToday ? "is-to-day" : ""
                     }`}
                     key={`item-day-${index}`}
+                    onClick={() => onShowModalAddEvent()}
                   >
                     <Typography className="day-number">
                       {dateInfo.date()}
@@ -60,7 +69,7 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
                           title={item.title}
                           placement="top-end"
                           key={`event-${index}`}
-                          onClick={() => onShowModal(item)}
+                          onClick={(e) => onShowModal(item, e)}
                         >
                           <TypoEvent variant="subtitle2">
                             {item.title}
@@ -82,7 +91,13 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
           onClose={() => setShowModal(false)}
         />
       )}
-    </>
+      {showModalAddEvent && (
+        <ModalAddEvent
+          open={showModalAddEvent}
+          onClose={() => setShowModalAddEvent(false)}
+        />
+      )}
+    </CloseModalContext.Provider>
   );
 }
 

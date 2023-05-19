@@ -1,13 +1,13 @@
-import { Box, Grid, ListItem, ListItemText, Typography } from "@mui/material";
+import dayjs from "dayjs";
 import React, { useEffect, useRef, useState } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { Box, Grid, ListItem, ListItemText, Typography } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
-import { CalendarCustom, ListContent, GridListEvent, GridList } from "./styles";
-import { eventData } from "../Schedule/event";
 import EventModal from "../EventModal";
+import { CalendarCustom, ListContent, GridListEvent, GridList } from "./styles";
 
-function Sidebar({ selectedDate, setSelectedDate }) {
+function Sidebar({ selectedDate, setSelectedDate, events }) {
   const scrollToRef = useRef(null);
 
   const [showModal, setShowModal] = useState(false);
@@ -46,13 +46,19 @@ function Sidebar({ selectedDate, setSelectedDate }) {
         </Grid>
         <GridList item xs={12}>
           <ListContent>
-            {eventData.map((event, index) => {
+            {events.map((event, index) => {
               const isHighlighted = selectedDate.isBetween(
                 event.start,
                 event.end,
                 "day",
                 "[]"
               );
+              const startDay = dayjs(event.start)
+                .toDate()
+                .toLocaleDateString("en-GB");
+              const endDay = dayjs(event.end)
+                .toDate()
+                .toLocaleDateString("en-GB");
 
               return (
                 <ListItem
@@ -63,9 +69,7 @@ function Sidebar({ selectedDate, setSelectedDate }) {
                 >
                   <ListItemText
                     primary={event.title}
-                    secondary={`${event.start.toLocaleDateString(
-                      "en-GB"
-                    )} - ${event.end.toLocaleDateString("en-GB")}`}
+                    secondary={`${startDay} - ${endDay}`}
                   />
                 </ListItem>
               );

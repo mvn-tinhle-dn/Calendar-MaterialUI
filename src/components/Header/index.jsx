@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Avatar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { Avatar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 
-import { AppBarHeader, BoxHeaderLeft, ButtonToday, LogoImage } from "./styles";
-import CalendarContext from "../../store/CalendarContext";
 import { FlexContainer } from "../../common/common";
+import { CalendarContext } from "../../store/CalendarContext";
+import { AppBarHeader, BoxHeaderLeft, ButtonToday, LogoImage } from "./styles";
 
 const Header = ({
   handlePrevMonth,
