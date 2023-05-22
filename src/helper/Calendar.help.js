@@ -4,14 +4,13 @@ const matchEventsToCalendarRows = (calendarRows, eventData) => {
   const matchedData = calendarRows.map((row) =>
     row.map((day) => {
       const dayNum = day.date();
-
       const events = eventData.filter((event) => {
         const eventStartDate = dayjs(event.start).toDate();
         const eventEndDate = dayjs(event.end).toDate();
         const eventMonth = eventStartDate.getMonth();
 
         if (eventMonth !== day.month()) {
-          return false;
+          return null;
         }
 
         return (

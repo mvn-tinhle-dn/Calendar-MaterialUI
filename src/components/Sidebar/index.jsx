@@ -9,7 +9,6 @@ import { CalendarCustom, ListContent, GridListEvent, GridList } from "./styles";
 
 function Sidebar({ selectedDate, setSelectedDate, events }) {
   const scrollToRef = useRef(null);
-
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState("");
 

@@ -5,17 +5,17 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 import {
   BoxLoading,
-  GridContainer,
-  GridSchedule,
   GridSideBar,
+  GridSchedule,
+  GridContainer,
 } from "../../components/Schedule/styles";
 import Header from "../../components/Header";
+import { fetchEventData } from "../../api/api";
 import Sidebar from "../../components/Sidebar";
 import Schedule from "../../components/Schedule";
 import { CalendarContext } from "../../store/CalendarContext";
 import { FlexContainer, GridNoPadding } from "../../common/common";
 import { matchEventsToCalendarRows } from "../../helper/Calendar.help";
-import { fetchEventData } from "../../api/api";
 
 const CalendarScreen = () => {
   const currentDay = useContext(CalendarContext);
@@ -26,10 +26,8 @@ const CalendarScreen = () => {
   const [selectedDate, setSelectedDate] = useState(currentDay);
 
   const [currentMonth, setCurrentMonth] = useState(currentDay);
-
   const daysInMonth = currentMonth.daysInMonth();
   const startDayOfWeek = currentMonth.startOf("month").day();
-
   const previousMonth = currentMonth.subtract(1, "month");
   const daysInPreviousMonth = previousMonth.daysInMonth();
 

@@ -5,34 +5,32 @@ import { IconButton, Modal, Typography } from "@mui/material";
 
 import {
   BoxBodyModal,
-  BoxContentModal,
   BoxHeaderModal,
   PaperModalEvent,
+  BoxContentModal,
 } from "../EventModal/styles";
 import FormCreateEvent from "../FormCreateEvent";
 
 const ModalAddEvent = ({ open, onClose }) => {
   return (
-    <>
-      <Modal open={open} onClose={onClose}>
-        <PaperModalEvent elevation={3}>
-          <BoxHeaderModal>
-            <IconButton onClick={() => onClose()}>
-              <CloseIcon />
-            </IconButton>
-          </BoxHeaderModal>
-          <BoxBodyModal>
-            <BoxContentModal>
-              <EventIcon />
-              <Typography variant="h5">Create Event</Typography>
-            </BoxContentModal>
-            <BoxContentModal>
-              <FormCreateEvent />
-            </BoxContentModal>
-          </BoxBodyModal>
-        </PaperModalEvent>
-      </Modal>
-    </>
+    <Modal open={open} onClose={onClose}>
+      <PaperModalEvent elevation={3}>
+        <BoxHeaderModal>
+          <IconButton onClick={() => onClose()}>
+            <CloseIcon />
+          </IconButton>
+        </BoxHeaderModal>
+        <BoxBodyModal>
+          <BoxContentModal>
+            <EventIcon />
+            <Typography variant="h5">Create Event</Typography>
+          </BoxContentModal>
+          <BoxContentModal>
+            <FormCreateEvent />
+          </BoxContentModal>
+        </BoxBodyModal>
+      </PaperModalEvent>
+    </Modal>
   );
 };
 

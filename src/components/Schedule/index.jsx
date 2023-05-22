@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Grid, Typography, Tooltip } from "@mui/material";
 
 import {
-  GridNameDayHeader,
+  TypoEvent,
+  BoxEvents,
+  GridGrowFull,
   GridBdGrayBR,
   Typography500,
-  GridGrowFull,
-  BoxEvents,
-  TypoEvent,
+  GridNameDayHeader,
 } from "./styles";
 import EventModal from "../EventModal";
 import ModalAddEvent from "../ModalAddEvent";
@@ -16,6 +16,7 @@ import { CloseModalContext } from "../../store/CalendarContext";
 function Schedule({ calendarRows, currentMonth, currentDay }) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   const [showModal, setShowModal] = useState(false);
+  const [showModalAddEvent, setShowModalAddEvent] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState("");
 
   const onShowModal = (event, e) => {
@@ -23,7 +24,6 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
     setShowModal(true);
     setSelectedEvent(event);
   };
-  const [showModalAddEvent, setShowModalAddEvent] = useState(false);
 
   const onShowModalAddEvent = () => {
     setShowModalAddEvent(true);

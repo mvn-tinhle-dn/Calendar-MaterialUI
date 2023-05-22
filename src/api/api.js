@@ -11,6 +11,7 @@ export const fetchEventData = async () => {
 
   return data;
 };
+
 export const postEvent = async (data) => {
   try {
     const response = await fetch(

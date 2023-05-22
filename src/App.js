@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { Helmet } from "react-helmet";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";

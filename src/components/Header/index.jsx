@@ -9,11 +9,11 @@ import { CalendarContext } from "../../store/CalendarContext";
 import { AppBarHeader, BoxHeaderLeft, ButtonToday, LogoImage } from "./styles";
 
 const Header = ({
+  currentMonth,
+  toggleSideBar,
   handlePrevMonth,
   handleNextMonth,
-  currentMonth,
   handleCurrentMonth,
-  toggleSideBar,
 }) => {
   const currentDay = useContext(CalendarContext);
   const day = currentDay.date();
