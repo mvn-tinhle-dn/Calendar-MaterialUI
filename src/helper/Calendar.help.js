@@ -1,22 +1,29 @@
+import dayjs from "dayjs";
+
 const matchEventsToCalendarRows = (calendarRows, eventData) => {
   const matchedData = calendarRows.map((row) =>
     row.map((day) => {
       const dayNum = day.date();
 
       const events = eventData.filter((event) => {
-        const eventMonth = event.start.getMonth();
-        const eventStartDate = event.start.getDate();
-        const eventEndDate = event.end.getDate();
+        const eventStartDate = dayjs(event.start).toDate();
+        const eventEndDate = dayjs(event.end).toDate();
+        const eventMonth = eventStartDate.getMonth();
+
         if (eventMonth !== day.month()) {
-          return null;
+          return false;
         }
-        return dayNum >= eventStartDate && dayNum <= eventEndDate;
+
+        return (
+          dayNum >= eventStartDate.getDate() && dayNum <= eventEndDate.getDate()
+        );
       });
 
-      return { day, events: events };
+      return { day, events };
     })
   );
 
   return matchedData;
 };
+
 export { matchEventsToCalendarRows };

@@ -9,6 +9,7 @@ const GridNameDayHeader = styled(Grid)({
 const GridBdGrayBR = styled(Grid)(({ theme }) => ({
   borderBottom: `1px solid ${theme.palette.borderGray.main}`,
   borderRight: `1px solid ${theme.palette.borderGray.main}`,
+  cursor: "pointer",
   "&.item-day": {
     padding: "10px",
     overflow: "auto",
@@ -93,6 +94,13 @@ const TypoEvent = styled(Typography)(({ theme }) => ({
   },
 }));
 
+const BoxLoading = styled(Box)({
+  display: "flex",
+  height: "100vh",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
 export {
   GridNameDayHeader,
   GridBdGrayBR,
@@ -103,4 +111,5 @@ export {
   GridSideBar,
   BoxEvents,
   TypoEvent,
+  BoxLoading,
 };
