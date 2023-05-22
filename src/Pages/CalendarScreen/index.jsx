@@ -34,20 +34,20 @@ const CalendarScreen = () => {
   const calendarDays = [
     ...Array(startDayOfWeek)
       .fill()
-      .map((_, i) =>
-        previousMonth.date(daysInPreviousMonth - startDayOfWeek + i + 1)
+      .map((_, index) =>
+        previousMonth.date(daysInPreviousMonth - startDayOfWeek + index + 1)
       ),
     ...Array(daysInMonth)
       .fill()
-      .map((_, i) => currentMonth.date(i + 1)),
+      .map((_, index) => currentMonth.date(index + 1)),
     ...Array(6 - currentMonth.endOf("month").day())
       .fill()
-      .map((_, i) => currentMonth.add(1, "month").date(i + 1)),
+      .map((_, index) => currentMonth.add(1, "month").date(index + 1)),
   ];
 
   const calendarRows = Array(Math.ceil(calendarDays.length / 7))
     .fill()
-    .map((_, i) => calendarDays.slice(i * 7, (i + 1) * 7));
+    .map((_, index) => calendarDays.slice(index * 7, (index + 1) * 7));
 
   const handleNextMonth = () => {
     setCurrentMonth(currentMonth.add(1, "month"));

@@ -25,7 +25,11 @@ function App() {
         </Helmet>
         <div className="App">
           <CalendarScreen />
-          <ToastContainer autoClose={2000} closeOnClick />
+          <ToastContainer
+            autoClose={2000}
+            closeOnClick
+            style={{ top: "64px" }}
+          />
         </div>
       </CalendarContext.Provider>
     </QueryClientProvider>
