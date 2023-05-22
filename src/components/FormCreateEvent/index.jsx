@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Grid, TextField } from "@mui/material";
@@ -24,7 +25,9 @@ const FormCreateEvent = () => {
   const { mutate } = useMutation((event) => postEvent(event), {
     onSuccess: () => {
       queryClient.invalidateQueries("eventData");
+      toast.success("Create event is success!");
     },
+    onError: () => toast.success("Create event is failed!"),
   });
 
   const onSubmit = (data) => {

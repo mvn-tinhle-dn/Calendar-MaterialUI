@@ -3,6 +3,12 @@ export const fetchEventData = async () => {
     "https://6466e38cba7110b663aac3c7.mockapi.io/event"
   );
   const data = await response.json();
+  data.sort((eventA, eventB) => {
+    const dateA = new Date(eventA.end);
+    const dateB = new Date(eventB.end);
+    return dateA - dateB;
+  });
+
   return data;
 };
 export const postEvent = async (data) => {
