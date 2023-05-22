@@ -1,15 +1,17 @@
 import { toast } from "react-toastify";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Grid, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { useMutation, useQueryClient } from "react-query";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 import {
   CalendarContext,
   CloseModalContext,
 } from "../../store/CalendarContext";
-import { TextFieldDate } from "./styles";
 import { postEvent } from "../../api/api";
+import { GridActionsForm, TextFieldDate } from "./styles";
 
 const FormCreateEvent = () => {
   const currentDay = useContext(CalendarContext);
@@ -22,10 +24,11 @@ const FormCreateEvent = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation((event) => postEvent(event), {
+  const { mutate, isLoading } = useMutation((event) => postEvent(event), {
     onSuccess: () => {
       queryClient.invalidateQueries("eventData");
       toast.success("Create event is success!");
+      setShowModalAddEvent(false);
     },
     onError: () => toast.success("Create event is failed!"),
   });
@@ -36,7 +39,6 @@ const FormCreateEvent = () => {
       start: new Date(data.start).toString(),
       end: new Date(data.end).toString(),
     };
-    setShowModalAddEvent(false);
     mutate(convertDataEvent);
   };
 
@@ -73,11 +75,18 @@ const FormCreateEvent = () => {
             fullWidth
           />
         </Grid>
-        <Grid item xs={12}>
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
-        </Grid>
+        <GridActionsForm item xs={12}>
+          <LoadingButton
+            loading={isLoading}
+            endIcon={<CheckCircleOutlineIcon />}
+            type="submit"
+            variant="contained"
+            color="primary"
+            loadingPosition="end"
+          >
+            Create
+          </LoadingButton>
+        </GridActionsForm>
       </Grid>
     </form>
   );
