@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Grid, Typography, Tooltip } from "@mui/material";
+import { Grid, Typography, Tooltip, Badge } from "@mui/material";
 
 import {
-  TypoEvent,
+  IconPoint,
   BoxEvents,
+  TypoEvent,
   GridGrowFull,
   GridBdGrayBR,
   Typography500,
@@ -11,13 +12,14 @@ import {
 } from "./styles";
 import EventModal from "../EventModal";
 import ModalAddEvent from "../ModalAddEvent";
-import { CloseModalContext } from "../../store/CalendarContext";
+import { EventModalContext } from "../../store/CalendarContext";
 
 function Schedule({ calendarRows, currentMonth, currentDay }) {
   const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
   const [showModal, setShowModal] = useState(false);
   const [showModalAddEvent, setShowModalAddEvent] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState("");
+  const [selectedDay, setSelectedDay] = useState(currentDay);
 
   const onShowModal = (event, e) => {
     e.stopPropagation();
@@ -25,12 +27,13 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
     setSelectedEvent(event);
   };
 
-  const onShowModalAddEvent = () => {
+  const handleClickDay = (day) => {
+    setSelectedDay(day);
     setShowModalAddEvent(true);
   };
 
   return (
-    <CloseModalContext.Provider value={setShowModalAddEvent}>
+    <EventModalContext.Provider value={{ setShowModalAddEvent, selectedDay }}>
       <Grid container spacing={0} direction="column">
         <GridNameDayHeader container>
           {daysOfWeek.map((day, columnIndex) => (
@@ -58,11 +61,18 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
                       isToday ? "is-to-day" : ""
                     }`}
                     key={`item-day-${index}`}
-                    onClick={() => onShowModalAddEvent()}
+                    onClick={() => handleClickDay(dateInfo)}
                   >
-                    <Typography className="day-number">
-                      {dateInfo.date()}
-                    </Typography>
+                    <Badge
+                      badgeContent={events.length}
+                      color="live"
+                      invisible={events.length < 2}
+                    >
+                      <Typography className="day-number">
+                        {dateInfo.date()}
+                      </Typography>
+                    </Badge>
+
                     <BoxEvents>
                       {events.map((item, index) => (
                         <Tooltip
@@ -72,7 +82,8 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
                           onClick={(e) => onShowModal(item, e)}
                         >
                           <TypoEvent variant="subtitle2">
-                            {item.title}
+                            <IconPoint color="liveDark" />
+                            <span>{item.title}</span>
                           </TypoEvent>
                         </Tooltip>
                       ))}
@@ -89,6 +100,7 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
           open={showModal}
           event={selectedEvent}
           onClose={() => setShowModal(false)}
+          setShowModal={setShowModal}
         />
       )}
       {showModalAddEvent && (
@@ -97,7 +109,7 @@ function Schedule({ calendarRows, currentMonth, currentDay }) {
           onClose={() => setShowModalAddEvent(false)}
         />
       )}
-    </CloseModalContext.Provider>
+    </EventModalContext.Provider>
   );
 }
 

@@ -81,6 +81,7 @@ function Sidebar({ selectedDate, setSelectedDate, events }) {
           open={showModal}
           event={selectedEvent}
           onClose={() => setShowModal(false)}
+          setShowModal={setShowModal}
         />
       )}
     </Box>

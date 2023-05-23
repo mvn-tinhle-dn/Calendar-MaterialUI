@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Box, Grid, Typography } from "@mui/material";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 const GridNameDayHeader = styled(Grid)({
   flexGrow: 0,
@@ -11,7 +12,7 @@ const GridBdGrayBR = styled(Grid)(({ theme }) => ({
   borderRight: `1px solid ${theme.palette.borderGray.main}`,
   cursor: "pointer",
   "&.item-day": {
-    padding: "10px",
+    padding: "14px 10px",
     overflow: "auto",
   },
 }));
@@ -51,16 +52,17 @@ const GridGrowFull = styled(Grid)({
     paddingTop: 0,
     minHeight: "100px",
   },
-  "& .is-to-day": {
+  " & .item-day": {
     "& .MuiTypography-root.day-number": {
       borderRadius: "50%",
-      color: "#fff",
-      backgroundColor: "#1565c0",
       display: "inline-block",
       padding: "8px",
-      " & + .MuiBox-root": {
-        marginTop: "0px",
-      },
+    },
+  },
+  "& .is-to-day": {
+    "& .MuiTypography-root.day-number": {
+      color: "#fff",
+      backgroundColor: "#1565c0",
     },
   },
   "& .MuiGrid-item.muted-day": {
@@ -72,25 +74,25 @@ const GridGrowFull = styled(Grid)({
 });
 
 const BoxEvents = styled(Box)({
-  display: "flex",
-  flexDirection: "column",
-  flexWrap: "nowrap",
-  marginTop: "16px",
+  maxHeight: "58px",
   overflow: "hidden",
 });
 
 const TypoEvent = styled(Typography)(({ theme }) => ({
-  padding: "0 10px",
+  display: "flex",
+  gap: "5px",
+  alignItems: "center",
   marginTop: "6px",
-  backgroundColor: `${theme.palette.live.main}`,
   borderRadius: "10px",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-  textOverflow: "ellipsis",
+  "& span": {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  },
+
   cursor: "pointer",
   "&:hover": {
-    backgroundColor: `${theme.palette.liveDark.main}`,
-    color: `${theme.palette.whiteText.main}`,
+    color: `${theme.palette.liveDark.main}`,
   },
 }));
 
@@ -99,6 +101,10 @@ const BoxLoading = styled(Box)({
   height: "100vh",
   alignItems: "center",
   justifyContent: "center",
+});
+
+const IconPoint = styled(FiberManualRecordIcon)({
+  width: "12px",
 });
 
 export {
@@ -112,4 +118,5 @@ export {
   BoxEvents,
   TypoEvent,
   BoxLoading,
+  IconPoint,
 };

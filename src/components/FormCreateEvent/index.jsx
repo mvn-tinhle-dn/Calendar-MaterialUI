@@ -6,16 +6,13 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { useMutation, useQueryClient } from "react-query";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-import {
-  CalendarContext,
-  CloseModalContext,
-} from "../../store/CalendarContext";
 import { postEvent } from "../../api/api";
 import { GridActionsForm, TextFieldDate } from "./styles";
+import { EventModalContext } from "../../store/CalendarContext";
 
 const FormCreateEvent = () => {
-  const currentDay = useContext(CalendarContext);
-  const setShowModalAddEvent = useContext(CloseModalContext);
+  const eventModal = useContext(EventModalContext);
+
   const {
     register,
     handleSubmit,
@@ -28,7 +25,7 @@ const FormCreateEvent = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("eventData");
       toast.success("Create event is success!");
-      setShowModalAddEvent(false);
+      eventModal.setShowModalAddEvent(false);
     },
     onError: () => toast.success("Create event is failed!"),
   });
@@ -48,7 +45,7 @@ const FormCreateEvent = () => {
         <Grid item xs={12}>
           <TextFieldDate
             name="title"
-            label="Tên sự kiện"
+            label="Event Name"
             {...register("title", { required: true })}
             error={!!errors.name}
             helperText={errors.name && "Vui lòng nhập tên sự kiện"}
@@ -58,9 +55,9 @@ const FormCreateEvent = () => {
         <Grid item xs={6}>
           <TextField
             name="start"
-            label="Ngày bắt đầu"
+            label="Start day"
             type="date"
-            defaultValue={currentDay.format("YYYY-MM-DD")}
+            defaultValue={eventModal.selectedDay.format("YYYY-MM-DD")}
             {...register("start", { required: true })}
             fullWidth
           />
@@ -68,9 +65,9 @@ const FormCreateEvent = () => {
         <Grid item xs={6}>
           <TextField
             name="end"
-            label="Ngày kết thúc"
+            label="End day"
             type="date"
-            defaultValue={currentDay.format("YYYY-MM-DD")}
+            defaultValue={eventModal.selectedDay.format("YYYY-MM-DD")}
             {...register("end", { required: true })}
             fullWidth
           />
