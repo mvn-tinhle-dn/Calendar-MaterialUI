@@ -33,6 +33,9 @@ const theming = createTheme({
     today: {
       main: "#1565c0",
     },
+    badge: {
+      main: "#e44444",
+    },
   },
   typography: {
     body1: {

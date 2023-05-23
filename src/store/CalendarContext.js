@@ -1,6 +1,6 @@
 import React from "react";
 
 const CalendarContext = React.createContext();
-const CloseModalContext = React.createContext();
+const EventModalContext = React.createContext();
 
-export { CalendarContext, CloseModalContext };
+export { CalendarContext, EventModalContext };
