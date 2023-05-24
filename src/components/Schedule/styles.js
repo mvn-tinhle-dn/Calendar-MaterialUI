@@ -57,6 +57,7 @@ const GridGrowFull = styled(Grid)({
       borderRadius: "50%",
       display: "inline-block",
       padding: "8px",
+      lineHeight: 1,
     },
   },
   "& .is-to-day": {

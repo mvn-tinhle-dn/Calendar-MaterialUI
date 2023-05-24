@@ -39,7 +39,7 @@ const theming = createTheme({
   },
   typography: {
     body1: {
-      lineHeight: 1,
+      lineHeight: 1.5,
     },
   },
   components: {

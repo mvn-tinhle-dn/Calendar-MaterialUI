@@ -6,7 +6,8 @@ const PaperModalEvent = styled(Paper)(({ theme }) => ({
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  minWidth: 400,
+  maxWidth: 569,
   padding: 16,
   backgroundColor: theme.palette.white.main,
   "&:focus-visible": {

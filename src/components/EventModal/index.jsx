@@ -13,6 +13,7 @@ import {
   PaperModalEvent,
   BoxContentModal,
 } from "./styles";
+import ConFirmModal from "../ConfirmModal";
 import { deleteEvent } from "../../api/api";
 import { DeleteOutline } from "@mui/icons-material";
 
@@ -34,9 +35,11 @@ const EventModal = ({ open, onClose, event, setShowModal }) => {
     <Modal open={open} onClose={onClose}>
       <PaperModalEvent elevation={3}>
         <BoxHeaderModal>
-          <IconButton onClick={() => mutate(event)}>
-            <DeleteOutline />
-          </IconButton>
+          <ConFirmModal
+            titleSubmit="delete"
+            onSubmit={() => mutate(event)}
+            icon={<DeleteOutline />}
+          />
           <IconButton onClick={() => onClose()}>
             <CloseIcon />
           </IconButton>
