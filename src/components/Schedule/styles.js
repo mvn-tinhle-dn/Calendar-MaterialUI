@@ -56,7 +56,7 @@ const GridGrowFull = styled(Grid)({
     "& .MuiTypography-root.day-number": {
       borderRadius: "50%",
       display: "inline-block",
-      padding: "8px",
+      padding: "8px 10px",
       lineHeight: 1,
     },
   },
