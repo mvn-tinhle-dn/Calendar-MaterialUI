@@ -1,10 +1,28 @@
-# Getting Started with Create React App
+# Mui Calendar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a calendar based on an idea from ["Google Calendar"]
 
 ## Demo
 
 Link: [https://main--calendar-mui.netlify.app/]
+
+## Packages
+
+```
+react: 18.2.0
+dayjs: 1.11.7
+react-query: 3.39.3
+react-hook-form: 7.43.9
+react-helmet: 6.1.0
+react-toastify: 9.1.3
+@mui/material: 5.13.0
+```
+
+## Setup
+
+Install node version `14`
+
+Run `npm install`
 
 ## Available Scripts
 
