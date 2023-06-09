@@ -1,6 +1,6 @@
 # Mui Calendar
 
-This project is a calendar based on an idea from [GoogleCalendar]
+This project is a calendar based on an idea from Google Calendar
 
 ## Demo
 
